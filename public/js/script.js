@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if running on GitHub Pages
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    
     // DOM elements
     const chatBox = document.getElementById('chatBox');
     const userMessage = document.getElementById('userMessage');
@@ -25,7 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // Initialize and set up listeners
-    initializeLocation();
+    // Skip actual API calls if on GitHub Pages
+    if (!isGitHubPages) {
+        initializeLocation();
+    } else {
+        console.log("Running on GitHub Pages - using fallback data");
+        useRandomUSCity();
+    }
     
     sendBtn.addEventListener('click', handleUserMessage);
     userMessage.addEventListener('keyup', (e) => {
@@ -382,7 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetch concerts
-    async function fetchConcerts(location) {
+    async function fetchConcerts(location, page = 0) {
+        // If we're on GitHub Pages, always use fallback data
+        if (isGitHubPages) {
+            return useFallbackData(location);
+        }
+        
         try {
             // Check cache first
             const cacheKey = `concerts_${location.toLowerCase()}`;
@@ -429,6 +443,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch concerts by genre
     async function fetchConcertsByGenre(genre, location) {
+        // If we're on GitHub Pages, use fallback data
+        if (isGitHubPages) {
+            return useFallbackDataByGenre(genre, location);
+        }
+        
         try {
             const cacheKey = `concerts_${genre}_${location.toLowerCase()}`;
             if (concertCache[cacheKey]) {
@@ -498,6 +517,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch concerts by date
     async function fetchConcertsByDate(dateRange, location) {
+        // If we're on GitHub Pages, use fallback data
+        if (isGitHubPages) {
+            return useFallbackDataByDate(dateRange, location);
+        }
+        
         try {
             const { startDate, endDate } = getDateRange(dateRange);
             
