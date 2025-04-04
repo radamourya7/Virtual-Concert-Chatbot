@@ -1,0 +1,337 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.chat-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.chat-header {
+    background: #4a00e0;
+    color: white;
+    padding: 15px 20px;
+}
+
+.chat-header-title {
+    display: flex;
+    align-items: center;
+}
+
+.chat-header-title i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.chat-box {
+    height: 350px;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bot-message {
+    align-items: flex-start;
+}
+
+.user-message {
+    align-items: flex-end;
+}
+
+.message-content {
+    padding: 12px 15px;
+    border-radius: 18px;
+    max-width: 75%;
+    word-wrap: break-word;
+}
+
+.bot-message .message-content {
+    background: #e3e3e3;
+}
+
+.user-message .message-content {
+    background: #4a00e0;
+    color: white;
+}
+
+.user-input {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+.user-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 25px;
+    background: #f0f0f0;
+    outline: none;
+    font-size: 1rem;
+}
+
+.user-input button {
+    width: 50px;
+    margin-left: 10px;
+    background: #4a00e0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.user-input button:hover {
+    background: #3a00b0;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.footer a:hover {
+    opacity: 0.8;
+}
+
+/* Concert list styles */
+.concert-list {
+    width: 100%;
+}
+
+.concert-list h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #4a00e0;
+}
+
+.concert-list ul {
+    list-style-type: none;
+}
+
+.concert-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
+}
+
+.concert-list li:last-child {
+    border-bottom: none;
+}
+
+.concert-list li strong {
+    color: #333;
+}
+
+/* Concert grid and cards */
+.concert-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.concert-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.concert-image {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+}
+
+.concert-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.concert-card:hover .concert-image img {
+    transform: scale(1.1);
+}
+
+.concert-info {
+    padding: 12px;
+}
+
+.concert-info h4 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.concert-date, .concert-venue, .concert-genre {
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.ticket-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #4a00e0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.ticket-button:hover {
+    background: #3a00b0;
+}
+
+/* Typing indicator */
+.typing-indicator .message-content {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    background: #e3e3e3;
+}
+
+.typing-dots {
+    display: flex;
+    align-items: center;
+}
+
+.typing-dots span {
+    height: 8px;
+    width: 8px;
+    margin: 0 2px;
+    background-color: #999;
+    border-radius: 50%;
+    display: block;
+    animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typing-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes typing {
+    0%, 80%, 100% {
+        transform: scale(0.6);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .chat-box {
+        height: 300px;
+    }
+}
+
+@media (min-width: 500px) {
+    .concert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Animation effects */
+.message {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.personal-note {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(74, 0, 224, 0.1);
+    border-left: 3px solid #4a00e0;
+    border-radius: 4px;
+    font-style: italic;
+    color: #4a00e0;
+    font-weight: 500;
+    text-align: center;
+} 

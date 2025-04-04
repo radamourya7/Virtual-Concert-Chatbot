@@ -1,0 +1,21 @@
+{
+  "name": "virtual-concert-chatbot",
+  "version": "1.0.0",
+  "description": "AI chatbot for finding virtual music concerts",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "chatbot",
+    "AI",
+    "concerts",
+    "music",
+    "virtual"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 
