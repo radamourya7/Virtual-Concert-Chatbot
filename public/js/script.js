@@ -1,3 +1,35 @@
+// Theme switching functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const themeText = themeToggle.querySelector('span');
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeButton(savedTheme);
+
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeButton(newTheme);
+    });
+
+    function updateThemeButton(theme) {
+        if (theme === 'dark') {
+            themeIcon.className = 'fas fa-moon';
+            themeText.textContent = 'Dark Mode';
+        } else {
+            themeIcon.className = 'fas fa-sun';
+            themeText.textContent = 'Light Mode';
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Check if running on GitHub Pages
     const isGitHubPages = window.location.hostname.includes('github.io');
@@ -6,9 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatBox = document.getElementById('chatBox');
     const userMessage = document.getElementById('userMessage');
     const sendBtn = document.getElementById('sendBtn');
+    const endConversationBtn = document.getElementById('endConversation');
 
     // Config
-    const ticketmasterApiKey = 'etGyY6EAM0y83iACGXgXgNV7a4BVTxBY';
+    const ticketmasterApiKey = '4yFwguTw7s7V3oQ5tBjXLlEBNUMOmijw';
     const MAX_API_RETRIES = 3;
     
     // State
@@ -43,6 +76,35 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize placeholder
     updateInputPlaceholder();
+
+    // Add event listener for end conversation button
+    endConversationBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to end this conversation?')) {
+            // Clear chat box except for the initial message
+            chatBox.innerHTML = `
+                <div class="message bot-message">
+                    <div class="message-content">
+                        Hello! I'm your concert finder assistant. I'd love to get to know you better. What's your name?
+                    </div>
+                </div>
+            `;
+            
+            // Reset all state
+            userName = "";
+            isAskingForName = true;
+            sessionContext = [];
+            concertCache = {};
+            
+            // Update input placeholder
+            updateInputPlaceholder();
+            
+            // Clear input field
+            userMessage.value = '';
+            
+            // Focus on input
+            userMessage.focus();
+        }
+    });
 
     // Helper function for API retries
     async function fetchWithRetry(url, retries = MAX_API_RETRIES) {
@@ -1061,4 +1123,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         return generateConcertList(fallbackConcerts, `Concerts in ${location}, USA for ${dateRange} (Sample Data)`);
     }
+
+    const API_BASE_URL = window.location.hostname.includes('github.io') 
+      ? 'https://your-heroku-app-name.herokuapp.com' 
+      : 'http://localhost:3000';
 }); 
