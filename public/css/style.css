@@ -538,8 +538,66 @@ header p {
         padding: 0 10px;
     }
 
+    header {
+        padding: 1.2rem;
+        text-align: center;
+        background: var(--primary);
+        border-bottom: 2px solid var(--secondary);
+        margin-bottom: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    header p {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
     .chat-container {
-        height: 80vh;
+        height: 75vh;
+        margin-top: 1rem;
+    }
+
+    .chat-header {
+        padding: 1rem;
+        background: var(--primary);
+        border-bottom: 2px solid var(--secondary);
+    }
+
+    .chat-header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .chat-header-left i {
+        font-size: 1.2rem;
+        color: var(--secondary);
+    }
+
+    .chat-header-left span {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .end-conversation-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0.5rem;
+        background: var(--primary-dark);
+        border: 1px solid var(--secondary);
+    }
+
+    .end-conversation-btn i {
+        font-size: 1rem;
+        color: var(--text-primary);
     }
 
     .chat-box {
@@ -566,24 +624,6 @@ header p {
         padding: 8px 12px;
     }
 
-    .chat-header {
-        padding: 0.8rem;
-    }
-
-    .chat-header-left span {
-        font-size: 0.9rem;
-    }
-
-    .end-conversation-btn {
-        width: 28px;
-        height: 28px;
-        padding: 0.4rem;
-    }
-
-    .end-conversation-btn i {
-        font-size: 0.9rem;
-    }
-
     .theme-toggle {
         padding: 8px 12px;
         font-size: 0.9rem;
@@ -601,18 +641,6 @@ header p {
     .main-content {
         margin-left: 0;
         width: 100%;
-    }
-
-    header {
-        padding: 1rem;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    header p {
-        font-size: 0.9rem;
     }
 
     .footer {
@@ -654,11 +682,27 @@ header p {
         padding: 6px 10px;
     }
 
+    header {
+        padding: 1rem;
+    }
+
     header h1 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     header p {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .chat-header {
+        padding: 0.8rem;
+    }
+
+    .chat-header-left span {
+        font-size: 1rem;
+    }
+
+    .chat-header-left i {
+        font-size: 1.1rem;
     }
 } 
