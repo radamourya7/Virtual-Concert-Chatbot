@@ -316,13 +316,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Extract dates
-        const dateTerms = ['today', 'tomorrow', 'this week', 'this weekend', 'this month', 'next week', 'next month'];
+        // Extract dates - enhanced date detection
+        const dateTerms = [
+            'today', 'tomorrow', 'this week', 'this weekend', 'this month', 'next week', 'next month',
+            'next saturday', 'next sunday', 'next friday', 'next monday', 'next tuesday', 'next wednesday', 'next thursday',
+            'in may', 'in june', 'in july', 'in august', 'in september', 'in october', 'in november', 'in december',
+            'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'
+        ];
+        
         dateTerms.forEach(term => {
             if (processed.lowerMessage.includes(term)) {
                 processed.entities.dates.push(term);
             }
         });
+        
+        // Check for specific date patterns
+        const datePattern = /(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2}(?:st|nd|rd|th)?/i;
+        const dateMatch = processed.lowerMessage.match(datePattern);
+        if (dateMatch) {
+            processed.entities.dates.push(dateMatch[0]);
+        }
         
         // Determine intent
         if (/hello|hi|hey/i.test(processed.lowerMessage)) {
@@ -419,14 +432,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                     
                 case 'search_by_date':
-                    const dateRange = processedMessage.entities.dates[0];
-                    let searchCity = userLocation.city;
-                    
-                    if (processedMessage.entities.locations.length > 0) {
-                        searchCity = processedMessage.entities.locations[0];
+                    const dateQuery = processedMessage.entities.dates[0];
+                    if (dateQuery) {
+                        response = `I'll search for concerts ${dateQuery}. Let me check what's available...`;
+                        // Use fallback data for GitHub Pages
+                        if (window.location.hostname.includes('github.io')) {
+                            setTimeout(() => {
+                                addMessage(useFallbackDataByDate(dateQuery, userLocation.city), 'bot');
+                            }, 1000);
+                        } else {
+                            // For local development, use actual API
+                            await fetchConcertsByDate(userLocation.city, dateQuery);
+                        }
+                    } else {
+                        response = `${userName}, I can help you find concerts by date. Try asking about specific dates like "next Saturday" or "in May".`;
                     }
-                    
-                    response = await fetchConcertsByDate(dateRange, searchCity);
                     break;
                     
                 case 'general_concert_inquiry':
@@ -447,8 +467,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             return response;
         } catch (error) {
-            console.error("Response error:", error);
-            return `Having trouble with the concert database, ${userName}. Let me show sample concerts instead.`;
+            console.error("Error generating response:", error);
+            return `I'm having trouble processing your request, ${userName}. Could you please try again?`;
         }
     }
 

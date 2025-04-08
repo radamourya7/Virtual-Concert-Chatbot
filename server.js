@@ -1,11 +1,18 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-// Serve static files
+// Middleware
 app.use(express.static(__dirname));
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Enable CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // Main route
 app.get('/', (req, res) => {
@@ -13,6 +20,6 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Virtual Concert Chatbot running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 }); 
