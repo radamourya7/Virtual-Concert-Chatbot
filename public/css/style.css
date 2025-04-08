@@ -529,4 +529,136 @@ header p {
     background-color: var(--accent);
     color: var(--primary);
     transform: rotate(90deg);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    .chat-container {
+        height: 80vh;
+    }
+
+    .chat-box {
+        height: calc(100% - 120px);
+        padding: 10px;
+    }
+
+    .message-content {
+        max-width: 85%;
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .user-input {
+        padding: 10px;
+    }
+
+    .user-input input {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .user-input button {
+        padding: 8px 12px;
+    }
+
+    .chat-header {
+        padding: 0.8rem;
+    }
+
+    .chat-header-left span {
+        font-size: 0.9rem;
+    }
+
+    .end-conversation-btn {
+        width: 28px;
+        height: 28px;
+        padding: 0.4rem;
+    }
+
+    .end-conversation-btn i {
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle i {
+        font-size: 0.9rem;
+    }
+
+    .sidebar {
+        width: 0;
+        padding: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        height: 85vh;
+    }
+
+    .message-content {
+        max-width: 90%;
+        font-size: 0.85rem;
+    }
+
+    .chat-header-left span {
+        font-size: 0.8rem;
+    }
+
+    .end-conversation-btn {
+        width: 24px;
+        height: 24px;
+        padding: 0.3rem;
+    }
+
+    .end-conversation-btn i {
+        font-size: 0.8rem;
+    }
+
+    .user-input input {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+
+    .user-input button {
+        padding: 6px 10px;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    header p {
+        font-size: 0.8rem;
+    }
 } 
